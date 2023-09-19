@@ -1,7 +1,7 @@
 package com.almasabdykadyr.currency.controllers
 
-import com.almasabdykadyr.currency.services.CurrencyService
 import com.almasabdykadyr.currency.entities.Currency
+import com.almasabdykadyr.currency.services.CurrencyService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -17,7 +17,7 @@ class CurrencyController(@Autowired private val service: CurrencyService) {
     fun isAlive(): String = "Servers is alive"
 
     @GetMapping("/currencies")
-    fun getAll(): ResponseEntity<List<Currency>> {
+    fun getAll(): ResponseEntity<List<Currency?>> {
         return ResponseEntity(service.getAll(), HttpStatus.OK)
     }
 
