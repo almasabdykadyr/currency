@@ -1,4 +1,4 @@
-package com.almasabdykadyr.currency
+package com.almasabdykadyr.currency.entities
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity

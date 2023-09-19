@@ -1,15 +1,14 @@
-package com.almasabdykadyr.currency
+package com.almasabdykadyr.currency.controllers
 
+import com.almasabdykadyr.currency.services.CurrencyService
+import com.almasabdykadyr.currency.entities.Currency
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-
-//TODO: REWRITE BY USING SERVICES
 
 @RestController
 class CurrencyController(@Autowired private val service: CurrencyService) {

@@ -1,7 +1,7 @@
-package com.almasabdykadyr.currency
+package com.almasabdykadyr.currency.services
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import com.almasabdykadyr.currency.entities.Currency
+import com.almasabdykadyr.currency.repository.CurrencyRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
