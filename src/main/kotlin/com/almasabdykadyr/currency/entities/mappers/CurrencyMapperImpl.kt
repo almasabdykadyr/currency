@@ -5,7 +5,7 @@ import com.almasabdykadyr.currency.entities.Currency
 import org.springframework.stereotype.Component
 
 @Component
-class CurrencyEntityToDtoMapperImpl: CurrencyEntityToDtoMapper {
+class CurrencyMapperImpl: CurrencyMapper {
 
     override fun toEntity(currencyDTO: CurrencyDTO): Currency {
         return Currency(
