@@ -2,15 +2,13 @@ package com.almasabdykadyr.currency.services
 
 import com.almasabdykadyr.currency.dto.CurrencyDTO
 import com.almasabdykadyr.currency.entities.Currency
-import com.almasabdykadyr.currency.entities.mappers.CurrencyEntityToDtoMapper
+import com.almasabdykadyr.currency.entities.mappers.CurrencyMapper
 import com.almasabdykadyr.currency.repository.CurrencyRepository
 import org.springframework.dao.DataAccessException
 import org.springframework.stereotype.Service
 
-//FIXME: *IMPORTANT* write mapper, to use DTO for requests
-
 @Service
-class CurrencyServiceImpl(private val repository: CurrencyRepository, private val mapper: CurrencyEntityToDtoMapper) :
+class CurrencyServiceImpl (private val repository: CurrencyRepository, private val mapper: CurrencyMapper) :
     CurrencyService {
 
     override fun getAll(): List<CurrencyDTO> {
@@ -28,11 +26,11 @@ class CurrencyServiceImpl(private val repository: CurrencyRepository, private va
     }
 
     override fun getByCode(code: String): CurrencyDTO {
-        return mapper.toDto(repository.findByCode(code).get())
+        return mapper.toDto(repository.findByCode(code))
     }
 
     override fun insert(code: String, fullName: String, sign: String): CurrencyDTO {
-    return mapper.toDto(repository.save(Currency(code = code, fullName = fullName, sign = sign)))
+        return mapper.toDto(repository.save(Currency(code = code, fullName = fullName, sign = sign)))
     }
 
 }

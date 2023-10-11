@@ -8,6 +8,6 @@ import java.util.*
 @Repository
 interface CurrencyRepository : CrudRepository<Currency, Long> {
 
-    fun findByCode(code: String): Optional<Currency>
+    fun findByCode(code: String): Currency
 
 }
