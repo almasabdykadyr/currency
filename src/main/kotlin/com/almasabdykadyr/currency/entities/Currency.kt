@@ -10,7 +10,9 @@ import jakarta.persistence.Table
 @Table(name = "currencies")
 open class Currency(
 
-    @Id @GeneratedValue open val id: Long? = null,
+    @Id
+    @GeneratedValue
+    open val id: Long? = null,
 
     @Column(name = "code") open val code: String? = null,
 

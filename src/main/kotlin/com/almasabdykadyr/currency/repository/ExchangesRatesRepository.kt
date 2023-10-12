@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ExchangesRatesRepository : CrudRepository<ExchangeRate, Long> {
-    @Query("SELECT er.id FROM ExchangeRate er")
+    @Query("SELECT er FROM ExchangeRate er WHERE er.baseCurrency.code = :baseCurrencyCode AND er.targetCurrency.code = :targetCurrencyCode")
     fun findByCodes(baseCurrencyCode: String, targetCurrencyCode: String): ExchangeRate
 }
