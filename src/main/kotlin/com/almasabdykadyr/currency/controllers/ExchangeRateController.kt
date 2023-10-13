@@ -23,4 +23,5 @@ class ExchangeRateController(private val service: ExchangeRatesService) {
         val targetCurrencyCode = currencyPair.substring(3, 6).uppercase()
         return ResponseEntity(service.getByCurrencyPair(baseCurrencyCode, targetCurrencyCode), HttpStatus.OK)
     }
+
 }
