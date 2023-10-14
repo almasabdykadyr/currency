@@ -1,17 +1,13 @@
 package com.almasabdykadyr.currency.entities
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "currencies")
 open class Currency(
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     open val id: Long? = null,
 
     @Column(name = "code") open val code: String? = null,
