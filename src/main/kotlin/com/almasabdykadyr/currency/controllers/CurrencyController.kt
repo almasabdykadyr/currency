@@ -1,8 +1,7 @@
 package com.almasabdykadyr.currency.controllers
 
+import com.almasabdykadyr.currency.dto.CurrencyAddingDTO
 import com.almasabdykadyr.currency.dto.CurrencyDTO
-import com.almasabdykadyr.currency.dto.CurrencyWOIdDTO
-import com.almasabdykadyr.currency.entities.Currency
 import com.almasabdykadyr.currency.services.CurrencyService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -29,7 +28,7 @@ class CurrencyController(private val service: CurrencyService) {
     }
 
     @PostMapping("/currency")
-    fun addCurrency(@RequestBody currency: CurrencyWOIdDTO): CurrencyDTO {
+    fun addCurrency(@RequestBody currency: CurrencyAddingDTO): CurrencyDTO {
         return service.insert(currency.code, currency.name, currency.sign)
     }
 }
