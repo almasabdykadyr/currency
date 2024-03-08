@@ -1,36 +1,30 @@
-package com.almasabdykadyr.currency.services
+package com.almasabdykadyr.currency.services.implementations
 
-import com.almasabdykadyr.currency.dto.CurrencyDTO
-import com.almasabdykadyr.currency.entities.Currency
-import com.almasabdykadyr.currency.entities.mappers.CurrencyMapper
+import com.almasabdykadyr.currency.domain.mappers.CurrencyDto
+import com.almasabdykadyr.currency.domain.mappers.CurrencyMapper
 import com.almasabdykadyr.currency.repository.CurrencyRepository
-import org.springframework.dao.DataAccessException
+import com.almasabdykadyr.currency.services.CurrencyService
 import org.springframework.stereotype.Service
+import kotlin.jvm.optionals.getOrNull
 
 @Service
-class CurrencyServiceImpl (private val repository: CurrencyRepository, private val mapper: CurrencyMapper) :
+class CurrencyServiceImpl(private val repository: CurrencyRepository, private val currencyMapper: CurrencyMapper) :
     CurrencyService {
 
-    override fun getAll(): List<CurrencyDTO> {
-        return try {
-            repository.findAll().map {
-                mapper.toDto(it)
-            }.toList()
-        } catch (e: Exception) {
-            throw object : DataAccessException("Error to access to datasource", e) {}
-        }
+    override fun getAll(): List<CurrencyDto> {
+        return repository.findAll().map(currencyMapper::toDto)
     }
 
-    override fun getById(id: Long): CurrencyDTO {
-        return mapper.toDto(repository.findById(id).get())
+    override fun getById(id: Int): CurrencyDto? {
+        return repository.findById(id).map(currencyMapper::toDto).getOrNull()
     }
 
-    override fun getByCode(code: String): CurrencyDTO {
-        return mapper.toDto(repository.findByCode(code))
+    override fun getByCode(code: String): CurrencyDto? {
+        return repository.findByCode(code).map(currencyMapper::toDto).getOrNull()
     }
 
-    override fun insert(code: String, fullName: String, sign: String): CurrencyDTO {
-        return mapper.toDto(repository.save(Currency(code = code, fullName = fullName, sign = sign)))
+    override fun insert(currencyDto: CurrencyDto): CurrencyDto {
+        //TODO: make more readable
+        return currencyMapper.toDto(repository.save(currencyMapper.toEntity(currencyDto)))
     }
-
 }

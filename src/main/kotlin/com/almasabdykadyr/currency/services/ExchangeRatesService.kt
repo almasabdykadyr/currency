@@ -1,11 +1,11 @@
 package com.almasabdykadyr.currency.services
 
-import com.almasabdykadyr.currency.dto.ExchangeRateDTO
+import com.almasabdykadyr.currency.domain.mappers.ExchangeRateDto
+import java.math.BigDecimal
 
 interface ExchangeRatesService {
 
-    fun getAll(): List<ExchangeRateDTO>
-    fun getByCurrencyPair(baseCurrencyCode: String, targetCurrencyCode: String): ExchangeRateDTO
-
-    fun insert()
+    fun getAll(): List<ExchangeRateDto>
+    fun getByCurrencyPair(codesPath: String): ExchangeRateDto?
+    fun insert(exchangeRateDto: ExchangeRateDto): ExchangeRateDto
 }
